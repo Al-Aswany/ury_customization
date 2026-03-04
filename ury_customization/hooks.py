@@ -5,10 +5,10 @@ app_description = "app for Ury Customization"
 app_email = "mahmudhussain2001ab@gmail.com"
 app_license = "mit"
 
+required_apps = ["ury"]
+
 # Apps
 # ------------------
-
-# required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -137,34 +137,47 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Customer": {
+		"before_insert": "ury_customization.ury_customization.hooks.ury_customer.before_insert",
+	},
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"ury_customization.tasks.all"
-# 	],
-# 	"daily": [
-# 		"ury_customization.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"ury_customization.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"ury_customization.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"ury_customization.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"cron": {
+		"0 0 * * *": [
+			"ury_customization.ury_customization.api.employee_meal_reset.reset_employee_meal_taken"
+		]
+	}
+}
+
+# Fixtures
+# --------
+
+fixtures = [
+	{
+		"doctype": "Custom Field",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"POS Invoice-employee_meal_info",
+					"POS Invoice-is_employee_meal",
+					"POS Invoice-employee",
+					"POS Invoice-employee_name",
+					"Employee-employee_meal_section",
+					"Employee-employee_meal_eligibility",
+					"Employee-column_break_emp_meal",
+					"Employee-employee_branch_eligibility",
+				],
+			]
+		],
+	},
+]
 
 # Testing
 # -------
