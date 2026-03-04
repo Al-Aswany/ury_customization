@@ -26,7 +26,7 @@ required_apps = ["ury"]
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/ury_customization/css/ury_customization.css"
-# app_include_js = "/assets/ury_customization/js/ury_customization.js"
+app_include_js = "/assets/ury_customization/js/silent_print.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/ury_customization/css/ury_customization.css"
