@@ -159,6 +159,10 @@ scheduler_events = {
 
 fixtures = [
 	{
+		"doctype": "Print Format",
+		"filters": [["name", "in", ["URY KOT Print"]]],
+	},
+	{
 		"doctype": "Custom Field",
 		"filters": [
 			[
@@ -173,6 +177,10 @@ fixtures = [
 					"Employee-employee_meal_eligibility",
 					"Employee-column_break_emp_meal",
 					"Employee-employee_branch_eligibility",
+					"URY Production Unit-custom_kds_silent_print_section",
+					"URY Production Unit-custom_kds_silent_print_enabled",
+					"URY Production Unit-custom_kds_silent_print_type",
+					"URY Production Unit-custom_kds_silent_print_format",
 				],
 			]
 		],

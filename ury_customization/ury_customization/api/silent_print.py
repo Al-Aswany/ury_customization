@@ -4,6 +4,24 @@ import frappe
 
 
 @frappe.whitelist()
+def get_production_silent_config(production):
+	"""Return the KDS silent-print settings for a given Production Unit name."""
+	if not production:
+		return {}
+	config = frappe.db.get_value(
+		"URY Production Unit",
+		production,
+		[
+			"custom_kds_silent_print_enabled",
+			"custom_kds_silent_print_type",
+			"custom_kds_silent_print_format",
+		],
+		as_dict=True,
+	)
+	return config or {}
+
+
+@frappe.whitelist()
 def create_pdf(doctype, name, print_format=None, no_letterhead=0):
 	"""
 	Generate a PDF for the given document and return it as a base64 string.
